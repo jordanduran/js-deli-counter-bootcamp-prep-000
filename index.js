@@ -1,46 +1,30 @@
-var katzDeli = []; // At the beginning of the day,
-//the deli is empty and is represented by an empty array
-//<<<<<<<<<--------------- in the instructions <<<<<<
-
-function takeANumber(katzDeli, name) {
-  katzDeli.push(`${name}`);
-  return(`Welcome, ${name}. You are number ${katzDeli.length} in line.`);
+function takeANumber(katzDeliLine, name) {
+  katzDeliLine.push(name)
+  return `Welcome, ${name}. You are number ${katzDeliLine.length} in line.`;
 }
 
-function takeANumber(katzDeliLine, nowServing) {
-
-function nowServing(katzDeli) {
-  let i = 0;
-  while (i < katzDeli.length) {
-    i++;
+function nowServing(katzDeliLine) {
+  if (katzDeliLine.length === 0) {
+    return "There is nobody waiting to be served!"
+  } else {
+    var now = katzDeliLine[0];
+    katzDeliLine.shift();
+    return `Currently serving ${now}.`
   }
-  if (katzDeli.length === 0) {
-    return "There is nobody waiting to be served!";
-  }
-  else
-  return (`Currently serving ${katzDeli.shift()}.`);
 }
 
-// Build a function currentLine that returns the current line.
-// For example, if katzDeliLine is currently ["Ada", "Grace"],
-// currentLine(katzDeliLine) would return "The line is currently: 1. Ada 2. Grace".
-// If there is nobody in line, it should return "The line is currently empty."
-
-
-var line = [];
-
-
-
-
-
-function currentLine(katzDeli) {
-  let i = 0;
-  while (i < katzDeli.length) {
-    line.push(` `+[i+1]+`. `  + katzDeli[i])
-    i++;
-  }
-  if (katzDeli.length === 0) {
+function currentLine(katzDeliLine) {
+  if (katzDeliLine.length === 0) {
     return "The line is currently empty.";
-  } else
-  return(`The line is currently:` + line);
+
+  } else {
+    var str = "The line is currently: ";
+    let i = 0;
+    while (i < katzDeliLine.length - 1) {
+      str = str + `${i+1}. ${katzDeliLine[i]}, `;
+      i = i+1;
+    }
+    str = str + `${katzDeliLine.length}. ${katzDeliLine[katzDeliLine.length - 1]}`;
+    return str;
+  }
 }
